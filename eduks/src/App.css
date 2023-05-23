@@ -1,0 +1,109 @@
+.App {
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.topo{
+  width: 100%;
+}
+
+.divTitulo{
+  text-align: left;
+
+}
+
+.logo{
+  text-align: right;
+
+}
+
+.titulo{
+  padding-top: 8%;
+  font-size: 9rem;
+}
+
+.reforco{
+  font-size: 1rem;
+  text-align: left;
+}
+
+#email{
+  margin-top: 8%;
+}
+
+#senha{
+  margin-top: 2%;
+}
+
+.branco{
+  color: #fff;
+}
+
+.btn{
+  background-color: #1DA7D3;
+  color:#fff;
+  text-align: center;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.sublinhado{
+  text-decoration: underline;
+}
+
+#cadastrar{
+  margin-top: 6%;
+}
+
+#fixed{
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  margin-left: 88%;
+  margin-top: 37%;
+}
+
+.transparencia{
+  background-color: rgba(255, 255, 255, 0);
+  
+}
+
