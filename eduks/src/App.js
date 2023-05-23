@@ -1,15 +1,12 @@
 import './App.css';
-import backgroundImage from "./img/backTeste.jpg";
 import Contatos from "./components/Contatos";
 import Header from "./components/Header";
 import Input from "./components/Input"
 import Button from "./components/Button";
 
 function App() {
-
-    const nome ="juliano";
   return (
-    <div className="App" style={{backgroundImage: `url(${backgroundImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
+    <div className="App">
       
       <div className="container">
       
