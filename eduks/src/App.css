@@ -79,8 +79,8 @@
 }
 
 .btn{
-  background-color: #1DA7D3;
-  color:#fff;
+  background-color: #1da5d3 !important;
+  color:#fff !important;
   text-align: center;
 }
 
@@ -105,8 +105,4 @@
   margin-top: 37%;
 }
 
-.transparencia{
-  background-color: rgba(255, 255, 255, 0);
-  
-}
 

@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Contatos from "./components/Contatos";
 import Header from "./components/Header";
 import Input from "./components/Input"
@@ -28,7 +29,7 @@ function App() {
             <h2 className="sublinhado">Cadastrar</h2>
           </a>
         </div>
-        <Button id=""/>
+        <Button/>
       </div>
       <Contatos/>                 
     </div>

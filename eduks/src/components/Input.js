@@ -4,7 +4,7 @@ function Input(props){
           <div className="col-lg-4"></div>
           <div className="col-lg-4" id={props.id}>
             <div className="input-group input-group-lg">
-              <input type="text" className="form-control transparencia" placeholder={props.placeHolder} aria-label="Large" aria-describedby="inputGroup-sizing-sm"/>
+              <input type="text" className="form-control" placeholder={props.placeHolder} aria-label="Large" aria-describedby="inputGroup-sizing-sm"/>
             </div>
           </div>
         </div>
