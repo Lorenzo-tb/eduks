@@ -1,54 +1,20 @@
 .App {
+  margin: 0;
+  padding: 0;
   text-align: center;
   height: 100vh;
+  max-width: 100%;
   width: 100vw;
-  background-image: url(./img/backTeste.jpg);
+  max-width: 100vw;
+  background-color: #DADADA;
   background-repeat:no-repeat;
   background-size:cover
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 .topo{
   width: 100%;
-}
-
-.divTitulo{
-  text-align: left;
-
 }
 
 .logo{
@@ -58,20 +24,12 @@
 
 .titulo{
   padding-top: 8%;
-  font-size: 9rem;
+  font-size: 7rem;
 }
 
 .reforco{
   font-size: 1rem;
   text-align: left;
-}
-
-#email{
-  margin-top: 8%;
-}
-
-#senha{
-  margin-top: 2%;
 }
 
 .branco{
@@ -104,5 +62,16 @@
   margin-left: 88%;
   margin-top: 37%;
 }
+
+.inputs{
+  margin-top: 8%
+}
+
+.container{
+  max-width: 100vw !important;
+  margin: 0;
+  padding: 0;
+}
+
 
 

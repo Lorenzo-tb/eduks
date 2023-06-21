@@ -1,39 +1,74 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Contatos from "./components/Contatos";
-import Header from "./components/Header";
-import Input from "./components/Input"
-import Button from "./components/Button";
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Cadastro from './routes/Cadastro';
+import Login from './routes/Login';
+import Dificuldade from './routes/Dificuldade';
+import Home from './routes/Home';
+
+
 
 function App() {
+  
+  
+
+  
   return (
-    <div className="App">
-      
-      <div className="container">
-      
-      <Header/>
+    <Router>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dificuldade" element={<Dificuldade/>} />
+        </Routes>
+      </Router>
 
-        <div className="row">
-          <div className="col-lg-3 reforco">
-            <h2>O reforço de Português que você procurava</h2>
-          </div>
-        </div> 
-
-        <Input placeHolder="E-MAIL" id="email"/>
-        <Input placeHolder="SENHA" id="senha"/>
-      </div>
-
-      <div className="row col-12">
-        <div className="col-4" id="cadastrar">
-          <a id="cadastrar">
-            <h2 className="sublinhado">Cadastrar</h2>
-          </a>
-        </div>
-        <Button/>
-      </div>
-      <Contatos/>                 
-    </div>
   );
 }
 
 export default App;
+
+/*
+import Header from "./components/Header";
+import Button from "./components/Button";
+<div className='container'>
+        <div className='row'>
+          <Header/>
+        </div>
+
+        <div className="row">
+          <div className='col-md-1'></div>
+            <div className="col-md-3 reforco">
+              <h2>O reforço de Português que você procurava</h2>
+            </div>
+        </div> 
+
+        <div className='row'>
+          <div className='col-md-3'></div>
+          <div className='col-md-6'>
+            <Link to="/login">
+              <Button conteudo="Entrar"/>
+            </Link>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-md-3'></div>
+          <div className='col-md-6'>
+          <Link to="/cadastro">
+            <Button conteudo="Cadastrar"/>
+          </Link>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+      
+      
+
+*/

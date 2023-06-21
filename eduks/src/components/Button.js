@@ -1,8 +1,8 @@
 function Button(props){
     return(
-        <div className="col-4" id={props.id}>
-          <button type="button" className="btn mt-5 w-100"><h3>ENTRAR</h3></button>
-        </div>
+        <>
+          <button id={props.id} type="button" className="btn mt-5 w-100" onClick={props.onClick}><h3>{props.conteudo}</h3></button>
+        </>
     );
 }
 
