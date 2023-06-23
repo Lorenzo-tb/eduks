@@ -65,12 +65,12 @@ const Login = () =>{
                     <div className='col-4'>
                         <Button conteudo="Entrar"/>
                     </div>
-                    
+                
                 </div>
             </div>
         </div>
         
-    )
+    );
 }
 
 export default Login;

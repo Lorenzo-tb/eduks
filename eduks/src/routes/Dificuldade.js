@@ -32,12 +32,23 @@ const Dificuldade = () =>{
                 <div className='row mt-5'>
                     <div className='col-3'></div>
                     <div className='col-6'>
-                        <Button conteudo="Ver total de estrelas"/>
+                        <h1>Total de estrelas: </h1>
                     </div>
+                </div>
+                <div className='row'>
+                    <div className='col-5'></div>
+                    <div className='col-2'>
+                        {/*
+                        
+                            aqui vai as estrelas totais que o usuario possui
+
+                        */}
+                    </div>
+                    
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Dificuldade;

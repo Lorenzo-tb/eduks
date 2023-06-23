@@ -36,7 +36,7 @@ const Cadastro = () =>{
                         </div>
                         <div className='row mt-3'>
                         <div className='col-md-3'></div>
-                            <Input type="email" placeHolder="INSIRA SEU E-MAIL" id="email" autocomplete="username"/>
+                            <Input type="email" placeHolder="INSIRA SEU E-MAIL" id="email" autocomplete="email"/>
                         </div>
 
                         <div className='row mt-3'>
