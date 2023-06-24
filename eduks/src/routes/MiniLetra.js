@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import reproduzir from "../img/reprodutor.png";
 
 
-const MiniErro = () =>{
+const MiniLetra = () =>{
 
     const imgreprodutor = reproduzir;
 
@@ -25,8 +25,8 @@ const MiniErro = () =>{
 
                 <div className='row'>
                     <div className='col-md-1'></div>
-                    <div className='col-md-10'>
-                        <h1 className='text-dark'>Qual das opcoes esta escrita corretamente?</h1>
+                    <div className='col-md-10 '>
+                        <h1 className='text-dark'>Complete a palavra:</h1>
                     </div>
                 </div>
                 <div className='row pt-5'>
@@ -36,7 +36,7 @@ const MiniErro = () =>{
                     </div>
                 </div>
 
-                <div className='row pt-5'>
+                <div className='row pt-5 mt-5'>
                     <div className='col-md-3'></div>
                     <div className='col-md-6'>
                         {/* 
@@ -45,30 +45,7 @@ const MiniErro = () =>{
 
                         */}
                         {/*exemplo*/}
-                        <h1 className='text-dark minha-palavra'>A B E L I A</h1>
-                    </div>
-                </div>
-
-                <div className='row pt-5 mt-3'>
-                    <div className='col-md-4 col-2'></div>
-                    <div className='col-md-4 col-8'>
-                        <div className='row'>
-                            <div className='col-md-2 col-5'>
-                                <button className='meu-botao'>
-                                    <img className="imgReprodutor" src={imgreprodutor}/>
-                                </button>
-                                
-                            </div>
-                            <div className='col-md-10 col-7'>
-                                <div className='row'>
-                                    <h1 className='text-dark'>SOM DA</h1>
-                                </div>
-                                <div className='row'>
-                                    <h1 className='text-dark'>PALAVRA</h1>
-                                </div>
-                            </div>
-                        </div>
-                        
+                        <h1 className='text-dark minha-palavra'>B O L _</h1>
                     </div>
                 </div>
             </div>
@@ -76,4 +53,4 @@ const MiniErro = () =>{
     );
 }
 
-export default MiniErro;
+export default MiniLetra;

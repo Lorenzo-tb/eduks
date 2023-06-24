@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import reproduzir from "../img/reprodutor.png";
 
 
-const MiniErro = () =>{
+const MiniAcento = () =>{
 
     const imgreprodutor = reproduzir;
 
@@ -26,7 +26,7 @@ const MiniErro = () =>{
                 <div className='row'>
                     <div className='col-md-1'></div>
                     <div className='col-md-10'>
-                        <h1 className='text-dark'>Qual das opcoes esta escrita corretamente?</h1>
+                        <h1 className='text-dark'>Onde vai o acento desta palavra?</h1>
                     </div>
                 </div>
                 <div className='row pt-5'>
@@ -45,7 +45,7 @@ const MiniErro = () =>{
 
                         */}
                         {/*exemplo*/}
-                        <h1 className='text-dark minha-palavra'>A B E L I A</h1>
+                        <h1 className='text-dark minha-palavra'>J A C A R E</h1>
                     </div>
                 </div>
 
@@ -76,4 +76,4 @@ const MiniErro = () =>{
     );
 }
 
-export default MiniErro;
+export default MiniAcento;

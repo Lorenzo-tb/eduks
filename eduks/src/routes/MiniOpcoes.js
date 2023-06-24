@@ -16,19 +16,19 @@ const MiniOpcoes = () =>{
                             ex: 1/5
 
                         */}
-                        <h3>2/5</h3>
+                        <h2>2/5</h2>
                     </div>
                 </div>
                 <div className='row pt-5'>
-                    <div className='col-3'></div>
-                    <div className='col-6'>
+                    <div className='col-md-3'></div>
+                    <div className='col-md-6'>
                         <img className="imgAtividades" src=""/>{/*imagem que o banco de dados retorna*/}
                     </div>
                 </div>
                 <div className='row pt-5'>
                     <div className='col-md-1'></div>
                     <div className='col-md-10'>
-                        <h2 className='text-dark'>Qual das opcoes esta escrita corretamente?</h2>
+                        <h1 className='text-dark'>Qual das opcoes esta escrita corretamente?</h1>
                     </div>
                 </div>
 

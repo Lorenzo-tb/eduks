@@ -89,8 +89,22 @@
 }
 
 .minha-palavra{
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
+
+.meu-input{
+  height: 8vh;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid #000 ;
+  outline: none;
+  font-size: 2.5rem;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+
 
 
 
