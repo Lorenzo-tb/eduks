@@ -23,7 +23,6 @@ function App() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dificuldade" element={<Dificuldade/>} />
-
         <Route path='/miniOpcoes' element={<MiniOpcoes/>}/>
         <Route path='/miniErro' element={<MiniErro/>}/>
         <Route path='/miniAcento' element={<MiniAcento/>} />
@@ -31,7 +30,6 @@ function App() {
         <Route path='/miniPalavra' element={<MiniPalavra/>} />
       </Routes>
     </Router>
-
   );
 }
 

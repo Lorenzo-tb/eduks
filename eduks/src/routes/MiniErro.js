@@ -26,7 +26,7 @@ const MiniErro = () =>{
                 <div className='row'>
                     <div className='col-md-1'></div>
                     <div className='col-md-10'>
-                        <h1 className='text-dark'>Qual das opcoes esta escrita corretamente?</h1>
+                        <h1 className='text-dark'>Onde esta o erro desta palavra?</h1>
                     </div>
                 </div>
                 <div className='row pt-5'>
