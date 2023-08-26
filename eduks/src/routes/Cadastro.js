@@ -1,102 +1,118 @@
-import React from 'react';
-import {Formik, Form, Field, ErrorMessage} from "formik";
-import * as yup from "yup";
+import React, { useState } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "../components/Header";
-import Button from "../components/Button";
+import Header from '../components/Header';
+import Button from '../components/Button';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import axios from 'axios';
 
-const Cadastro = () =>{
+const Cadastro = () => {
+    const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
-    const handleClickCadastro = (values) =>{
-        console.log(values);
+    const handleClickCadastro = async (values) => {
+        try {
+            const response = await axios.post('/auth/register', {
+                name: values.name,
+                email: values.email,
+                password: values.password,
+                confirmpassword: values.confirmPassword
+            });
+
+            console.log(response.data);
+            navigate('/dificuldade');
+        } catch (error) {
+            console.error('Erro ao cadastrar:', error);
+            setError('Erro ao cadastrar. Por favor, verifique os dados e tente novamente.');
+        }
     };
 
     const validationCadastro = yup.object().shape({
-        name: yup.string().required("Este campo é obrigatório"),
-        email: yup.string().email("Este não é um email válido").required("Este campo é obrigatório"),
-        password: yup.string().min(8, "A senha deve conter a menos 8 caracteres").required("Este campo é obrigatório"),
-        confirmPassword: yup.string().oneOf([yup.ref("password"), null], 'As senhas devem ser iguais').required("Este campo é obrigatório")
+        name: yup.string().required('Este campo é obrigatório'),
+        email: yup.string().email('Este não é um email válido').required('Este campo é obrigatório'),
+        password: yup.string().min(8, 'A senha deve conter pelo menos 8 caracteres').required('Este campo é obrigatório'),
+        confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'As senhas devem ser iguais').required('Este campo é obrigatório')
     });
 
-    function checkboxDois(){
-        let checkbox = document.getElementById("checkboxDois");
-        let inputUm = document.getElementById("senha")
-        let inputDois = document.getElementById("conSenha");
-        if(checkbox.checked){
-            inputUm.setAttribute("type", "text");
-            inputDois.setAttribute("type", "text");
-        }else{
-            inputUm.setAttribute("type", "password");
-            inputDois.setAttribute("type", "password");
+    function checkboxDois() {
+        let checkbox = document.getElementById('checkboxDois');
+        let inputUm = document.getElementById('senha');
+        let inputDois = document.getElementById('conSenha');
+        if (checkbox.checked) {
+            inputUm.setAttribute('type', 'text');
+            inputDois.setAttribute('type', 'text');
+        } else {
+            inputUm.setAttribute('type', 'password');
+            inputDois.setAttribute('type', 'password');
         }
     }
-    
 
-    return(
-    <div className="App">
-        <div className="container">
-                <div className='row'>
-                    <Header/>
+    return (
+        <div className="App">
+            <div className="container">
+                <div className="row">
+                    <Header />
                 </div>
                 <Formik initialValues={{}} onSubmit={handleClickCadastro} validationSchema={validationCadastro}>
                     <Form>
-                        <div className='inputs'>
-                            <div className='row'>
-                                <div className='col-md-3'></div>
+                        <div className="inputs">
+                            <div className="row">
+                                <div className="col-md-3"></div>
                                 <div className="col-md-6">
                                     <div className="input-group input-group-lg">
-                                        <Field name="name" className="form-control" placeholder="Nome"/>
+                                        <Field name="name" className="form-control" placeholder="Nome" />
                                     </div>
                                 </div>
                                 <div className="col-md-2">
-                                    <ErrorMessage component="span" name="name" className="form-error"/>
+                                    <ErrorMessage component="span" name="name" className="form-error" />
                                 </div>
                             </div>
-                            <div className='row mt-3'>
-                                <div className='col-md-3'></div>
+                            <div className="row mt-3">
+                                <div className="col-md-3"></div>
                                 <div className="col-md-6">
                                     <div className="input-group input-group-lg">
-                                        <Field name="email" className="form-control" placeholder="INSIRA SEU E-MAIL"/>
+                                        <Field name="email" className="form-control" placeholder="INSIRA SEU E-MAIL" />
                                     </div>
                                 </div>
                                 <div className="col-md-2">
-                                    <ErrorMessage component="span" name="email" className="form-error"/>
-                                </div>
-                            </div>
-
-                            <div className='row mt-3'>
-                                <div className='col-md-3'></div>
-                                <div className="col-md-6">
-                                    <div className="input-group input-group-lg">
-                                        <Field id="senha" type="password" name="password" className="form-control" placeholder="CRIE SUA SENHA"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <ErrorMessage component="span" name="password" className="form-error"/>
+                                    <ErrorMessage component="span" name="email" className="form-error" />
                                 </div>
                             </div>
 
-                            <div className='row mt-3'>
-                                <div className='col-md-3'></div>
+                            <div className="row mt-3">
+                                <div className="col-md-3"></div>
                                 <div className="col-md-6">
                                     <div className="input-group input-group-lg">
-                                        <Field id="conSenha" type="password" name="confirmPassword" className="form-control" placeholder="CONFIRME SUA SENHA"/>
+                                        <Field id="senha" type="password" name="password" className="form-control" placeholder="CRIE SUA SENHA" />
                                     </div>
                                 </div>
                                 <div className="col-md-2">
-                                        <ErrorMessage component="span" name="confirmPassword" className="form-error"/>
+                                    <ErrorMessage component="span" name="password" className="form-error" />
                                 </div>
                             </div>
-                            <div className='row mt-1'>
-                                <div className='col-md-3'></div>
+
+                            <div className="row mt-3">
+                                <div className="col-md-3"></div>
+                                <div className="col-md-6">
+                                    <div className="input-group input-group-lg">
+                                        <Field id="conSenha" type="password" name="confirmPassword" className="form-control" placeholder="CONFIRME SUA SENHA" />
+                                    </div>
+                                </div>
+                                <div className="col-md-2">
+                                    <ErrorMessage component="span" name="confirmPassword" className="form-error" />
+                                </div>
+                            </div>
+                            <div className="row mt-1">
+                                <div className="col-md-3"></div>
                                 <div className="col-md-2 ">
-                                    <div className='row'>
-                                        <div className='col-1'>
-                                            <input onClick={checkboxDois} type="checkbox" id='checkboxDois'/>
+                                    <div className="row">
+                                        <div className="col-1">
+                                            <input onClick={checkboxDois} type="checkbox" id="checkboxDois" />
                                         </div>
-                                        <div className='col-10'>
-                                            <p className='reforco'>Ver senha</p>
+                                        <div className="col-10">
+                                            <p className="reforco">Ver senha</p>
                                         </div>
                                     </div>
                                 </div>
@@ -106,21 +122,28 @@ const Cadastro = () =>{
                         <div className="row">
                             <div className="col-4" id="cadastrar">
                                 <Link to="/login">
-                                    <h2 className="sublinhado">Ja sou cadastrado</h2>
+                                    <h2 className="sublinhado">Já sou cadastrado</h2>
                                 </Link>
                             </div>
-                            <div className='col-md-4'>
-                                <Button conteudo="Cadastrar" type="submit"/>
+                            <div className="col-md-4">
+                                <Button conteudo="Cadastrar" type="submit" />
                             </div>
-                                
                         </div>
+                        {error && (
+                            <div className="row mt-3">
+                                <div className="col-md-3"></div>
+                                <div className="col-md-6">
+                                    <div className="alert alert-danger" role="alert">
+                                        {error}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </Form>
                 </Formik>
-                
-                
-        </div>           
-    </div>
+            </div>
+        </div>
     );
-}
+};
 
 export default Cadastro;

@@ -1,101 +1,154 @@
-import React from 'react';
-import {Formik, Form, Field, ErrorMessage} from "formik";
-import * as yup from "yup";
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "../components/Header";
-import Button from "../components/Button";
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Header from '../components/Header';
+import Button from '../components/Button';
+import axios from 'axios';
 
-const Login = () =>{
+const Login = () => {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const handleClickLogin = (values)=>{
-        console.log(values);
-    };
+    const handleClickLogin = async (values) => {
+        try {
+            const response = await axios.post('/auth/login', {
+                email: values.email,
+                password: values.password
+            });
 
-    function checkboxUm(){
-        let checkbox = document.getElementById("checkboxUm");
-        let input = document.getElementById("senha");
-        if(checkbox.checked){
-            input.setAttribute("type", "text");
-        }else{
-            input.setAttribute("type", "password");
+            if (response.status === 200) {
+                navigate('/dificuldade');
+            }
+        } catch (error) {
+            if (error.response && error.response.data) {
+                setErrorMessage(error.response.data.msg);
+            } else {
+                setErrorMessage('Erro ao fazer login. Por favor, tente novamente mais tarde.');
+            }
         }
     };
-    return(
-        
-        <div className='App'>
-            
+
+    const togglePasswordVisibility = () => {
+        const passwordInput = document.getElementById('senha');
+        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    };
+
+    const validationSchema = yup.object().shape({
+        email: yup.string().email('Digite um e-mail válido').required('O e-mail é obrigatório'),
+        password: yup.string().required('A senha é obrigatória'),
+    });
+
+    return (
+        <div className="App">
             <div className="container">
-                <div className='row'>
-                    <Header/>
-                </div>
-            
                 <div className="row">
-                    <div className='col-md-1'></div>
+                    <Header />
+                </div>
+
+                <div className="row">
+                    <div className="col-md-1"></div>
                     <div className="col-md-3 reforco">
                         <h2>O reforço de Português que você procurava</h2>
                     </div>
-                </div> 
-                <Formik initialValues={{}} onSubmit={handleClickLogin} /*validationSchema={validationLogin}*/>
+                </div>
+
+                <Formik
+                    initialValues={{
+                        email: '',
+                        password: '',
+                    }}
+                    onSubmit={handleClickLogin}
+                    validationSchema={validationSchema}
+                >
                     <Form>
-                        <div className='inputs'>
-                        
-                            <div className='row'>
-                            <div className='col-md-3'></div>
-                            <div className="col-md-6">
+                        <div className="inputs">
+                            <div className="row">
+                                <div className="col-md-3"></div>
+                                <div className="col-md-6">
                                     <div className="input-group input-group-lg">
-                                        <Field name="email" className="form-control" placeholder="E-MAIL"/>
+                                        <Field
+                                            type="email"
+                                            name="email"
+                                            className="form-control"
+                                            placeholder="E-MAIL"
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-md-2">
-                                    <ErrorMessage component="span" name="email" className="form-error"/>
+                                    <ErrorMessage
+                                        component="span"
+                                        name="email"
+                                        className="form-error"
+                                    />
                                 </div>
                             </div>
 
-                            <div className='row mt-3'>
-                                <div className='col-md-3'></div>
+                            <div className="row mt-3">
+                                <div className="col-md-3"></div>
                                 <div className="col-md-6">
                                     <div className="input-group input-group-lg">
-                                        <Field type="password" id="senha" name="password" className="form-control" placeholder="SENHA"/>
+                                        <Field
+                                            type="password"
+                                            id="senha"
+                                            name="password"
+                                            className="form-control"
+                                            placeholder="SENHA"
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-md-2">
-                                    <ErrorMessage component="span" name="password" className="form-error"/>
+                                    <ErrorMessage
+                                        component="span"
+                                        name="password"
+                                        className="form-error"
+                                    />
                                 </div>
                             </div>
-                            <div className='row mt-1'>
-                                <div className='col-md-3'></div>
-                                <div className="col-md-2 ">
-                                    <div className='row'>
-                                        <div className='col-1'>
-                                            <input onClick={checkboxUm} type="checkbox" id='checkboxUm'/>
+
+                            <div className="row mt-1">
+                                <div className="col-md-3"></div>
+                                <div className="col-md-2">
+                                    <div className="row">
+                                        <div className="col-1">
+                                            <input
+                                                onClick={togglePasswordVisibility}
+                                                type="checkbox"
+                                                id="checkboxUm"
+                                            />
                                         </div>
-                                        <div className='col-10'>
-                                            <p className='reforco'>Ver senha</p>
+                                        <div className="col-10">
+                                            <p className="reforco">Ver senha</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
+                        {errorMessage && (
+                            <div className="row col-12">
+                                <div className="col-md-6 offset-md-3 text-center">
+                                    <p className="error-message">{errorMessage}</p>
+                                </div>
+                            </div>
+                        )}
+
                         <div className="row col-12">
                             <div className="col-4" id="cadastrar">
-                            <Link to="/cadastro">
-                                <h2 className="sublinhado">Cadastrar</h2>
-                            </Link>
+                                <Link to="/cadastro">
+                                    <h2 className="sublinhado">Cadastrar</h2>
+                                </Link>
                             </div>
-                            <div className='col-md-4'>
-                                <Button conteudo="Entrar" type="submit"/>
+                            <div className="col-md-4">
+                                <Button conteudo="Entrar" type="submit" />
                             </div>
-                        
                         </div>
                     </Form>
                 </Formik>
-                
             </div>
         </div>
-        
     );
-}
+};
 
 export default Login;
