@@ -10,6 +10,9 @@ const app = express()
 //Config JSON response
 app.use(express.json())
 
+var cors = require('cors');
+app.use(cors());
+
 // Models
 const User = require('./models/User')
 
@@ -27,9 +30,8 @@ app.get('/user/:id', checkToken, async (req, res) => {
     const user = await User.findById(id, '-password')
 
     if(!user) {
-        return res.status(404).json({msg: 'Usuário não encontrado!'})
+        return res.status(404).json({msg: 'Usuário não encontrado!'});
     }
-
     res.status(200).json({ user })
 
 })
@@ -40,7 +42,8 @@ function checkToken(req, res, next) {
     const token = authHeader && authHeader.split(' ')[1]
 
     if(!token) {
-        return res.status(401).json({msg: 'Acesso negado!'})
+        
+        return res.status(401).json({msg: 'Acesso negado!'});
     }
 
     try{
@@ -62,7 +65,7 @@ app.post('/auth/register',async(req, res) => {
 
     // validations
     if (!name) {
-       return res.status(422).json({ msg: 'O nome é obrigatório!'})
+        return res.status(422).json({ msg: 'O nome é obrigatório!'})
     } 
 
     if (!email) {
@@ -93,7 +96,8 @@ app.post('/auth/register',async(req, res) => {
         name,
         email,
         password: passwordHash,
-    })
+        stars: 0,
+    });
 
     try {
         

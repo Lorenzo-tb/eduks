@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -6,19 +6,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import axios from 'axios';
+//import { SharedLoginContext } from '../App'
 
 const Login = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
 
+    //const { sharedLogin, setSharedLogin } = useContext(SharedLoginContext);
+
     const handleClickLogin = async (values) => {
         try {
-            const response = await axios.post('/auth/login', {
+            const response = await axios.post('http://localhost:3000/auth/login', {
                 email: values.email,
                 password: values.password
             });
 
             if (response.status === 200) {
+                //setSharedLogin(true);
                 navigate('/dificuldade');
             }
         } catch (error) {

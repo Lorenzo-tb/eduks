@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Cadastro from './routes/Cadastro';
 import Login from './routes/Login';
 import Dificuldade from './routes/Dificuldade';
@@ -12,25 +12,52 @@ import MiniErro from './routes/MiniErro';
 import MiniAcento from './routes/MiniAcento';
 import MiniLetra from './routes/MiniLetra';
 import MiniPalavra from './routes/MiniPalavra';
+import FimAtividades from './routes/FimAtividades';
 
+//export const SharedLoginContext = createContext();
+export const SharedNumberContext = createContext();
+export const QuantidadeMiniGamesContext = createContext();
+export const AcertosContext = createContext();
 
 function App() {
-  
+  //const [sharedLogin, setSharedLogin] = useState(false);
+  const [sharedNumber, setSharedNumber] = useState(0);
+  const [quantidadeGames, setQuantidadeGames] = useState(0);
+  const [quantidadeAcertos, setQuantidadeAcertos] = useState(0);
+
+  //console.log(sharedLogin);
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dificuldade" element={<Dificuldade/>} />
-        <Route path='/miniOpcoes' element={<MiniOpcoes/>}/>
-        <Route path='/miniErro' element={<MiniErro/>}/>
-        <Route path='/miniAcento' element={<MiniAcento/>} />
-        <Route path='/miniLetra' element={<MiniLetra/>} />
-        <Route path='/miniPalavra' element={<MiniPalavra/>} />
-      </Routes>
-    </Router>
+      //<SharedLoginContext.Provider value={{ sharedLogin, setSharedLogin}}>
+      <QuantidadeMiniGamesContext.Provider value={{quantidadeGames, setQuantidadeGames}}>
+        <SharedNumberContext.Provider value={{sharedNumber, setSharedNumber}}>
+          <AcertosContext.Provider value={{quantidadeAcertos, setQuantidadeAcertos}}>
+            <Router>
+              <Routes>
+                <Route exact path='/' element={<Home/>}/>
+                <Route exact path="/cadastro" element={<Cadastro />} />
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/dificuldade" element={<Dificuldade/>} />
+                <Route exact path='/miniOpcoes' element={<MiniOpcoes/>}/>
+                <Route exact path='/miniErro' element={<MiniErro/>}/>
+                <Route exact path='/miniAcento' element={<MiniAcento/>} />
+                <Route exact path='/miniLetra' element={<MiniLetra/>} />
+                <Route exact path='/miniPalavra' element={<MiniPalavra/>} />
+                <Route exact path='/fimAtividades' element={<FimAtividades/>}/>
+              </Routes>
+            </Router>  
+          </AcertosContext.Provider> 
+        </SharedNumberContext.Provider>
+      </QuantidadeMiniGamesContext.Provider>
+        
+      //</SharedLoginContext.Provider>
   );
 }
-
+/*
+{
+  sharedLogin ?(
+    ROTAS
+  ) : (
+    OUTRAS ROTAS
+  )
+}*/
 export default App;

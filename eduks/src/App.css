@@ -104,6 +104,56 @@
   letter-spacing: 2px;
 }
 
+.minha-imagem{
+  width: 10vw;
+}
+
+.botoes-letras{
+  border: none;
+  background-color: hsla(0, 0%, 0%, 0);
+}
+
+.botoes-letras:active{
+  transform: translateY(2px);
+}
+
+
+.meu-btn{
+  border: solid 1px #000;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.meu-btn:active{
+  transform: translateY(2px);
+}
+
+.inputTeste{
+  width: 100%;
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none;
+    text-align: center;
+    background-color: #00000000;
+}
+
+.botaoTeste{
+  width: 100%;
+  background-color: #1DA7D3;
+  border: solid 1px #000;
+  border-radius: 8px;
+  color: #fff;
+  
+}
+
+.botaoTeste:active{
+  transform: translateY(2px);
+}
+
+.minhas-estrelas{
+  width: 100%;
+}
+
 
 
 

@@ -1,11 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import reproduzir from "../img/reprodutor.png";
-
 
 const MiniLetra = () =>{
-
-    const imgreprodutor = reproduzir;
 
     return(
         <div className='App'>

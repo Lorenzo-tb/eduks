@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
@@ -7,14 +7,16 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios';
+//import { SharedLoginContext } from '../App'
 
 const Cadastro = () => {
+    //const { sharedLogin, setSharedLogin } = useContext(SharedLoginContext);
     const navigate = useNavigate();
     const [error, setError] = useState(null);
 
     const handleClickCadastro = async (values) => {
         try {
-            const response = await axios.post('/auth/register', {
+            const response = await axios.post('http://localhost:3000/auth/register', {
                 name: values.name,
                 email: values.email,
                 password: values.password,
@@ -22,6 +24,7 @@ const Cadastro = () => {
             });
 
             console.log(response.data);
+            //setSharedLogin(true);
             navigate('/dificuldade');
         } catch (error) {
             console.error('Erro ao cadastrar:', error);

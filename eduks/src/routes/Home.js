@@ -1,10 +1,11 @@
+import React, { useContext } from 'react';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 
 const Home = () =>{
-
+    
     return(
         <div className="App">
             <div id="botoesHome" className='container'>
