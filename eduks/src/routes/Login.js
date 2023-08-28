@@ -14,9 +14,10 @@ const Login = () => {
 
     //const { sharedLogin, setSharedLogin } = useContext(SharedLoginContext);
 
+    //Pega as informacoes coletadas e manda para a api
     const handleClickLogin = async (values) => {
         try {
-            const response = await axios.post('http://localhost:3000/auth/login', {
+            const response = await axios.post('https://eduks-backend-render.onrender.com/auth/login', {
                 email: values.email,
                 password: values.password
             });
@@ -34,11 +35,18 @@ const Login = () => {
         }
     };
 
-    const togglePasswordVisibility = () => {
-        const passwordInput = document.getElementById('senha');
-        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    //torna a senha visivel ou invisivel
+    const checkbox = () => {
+        let checkbox = document.getElementById('checkboxUm');
+        let inputUm = document.getElementById('senha');
+        if (checkbox.checked) {
+            inputUm.setAttribute('type', 'text');
+        } else {
+            inputUm.setAttribute('type', 'password');
+        }
     };
 
+    //Faz as validacoes das informacoes coletadas
     const validationSchema = yup.object().shape({
         email: yup.string().email('Digite um e-mail válido').required('O e-mail é obrigatório'),
         password: yup.string().required('A senha é obrigatória'),
@@ -117,7 +125,7 @@ const Login = () => {
                                     <div className="row">
                                         <div className="col-1">
                                             <input
-                                                onClick={togglePasswordVisibility}
+                                                onClick={checkbox}
                                                 type="checkbox"
                                                 id="checkboxUm"
                                             />

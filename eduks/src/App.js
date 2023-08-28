@@ -15,15 +15,16 @@ import MiniPalavra from './routes/MiniPalavra';
 import FimAtividades from './routes/FimAtividades';
 
 //export const SharedLoginContext = createContext();
-export const SharedNumberContext = createContext();
-export const QuantidadeMiniGamesContext = createContext();
-export const AcertosContext = createContext();
+export const SharedNumberContext = createContext();//contexto do numero de atividades feitas
+export const QuantidadeMiniGamesContext = createContext();//contexto do numero total de atividade
+export const AcertosContext = createContext();//contexto do numero de acertos nas atividades
+
 
 function App() {
   //const [sharedLogin, setSharedLogin] = useState(false);
-  const [sharedNumber, setSharedNumber] = useState(0);
-  const [quantidadeGames, setQuantidadeGames] = useState(0);
-  const [quantidadeAcertos, setQuantidadeAcertos] = useState(0);
+  const [sharedNumber, setSharedNumber] = useState(0); //contexto do numero de atividades feitas get e set
+  const [quantidadeGames, setQuantidadeGames] = useState(0); //contexto do numero total de atividade get e set
+  const [quantidadeAcertos, setQuantidadeAcertos] = useState(0); //contexto do numero de acertos nas atividades get e set
 
   //console.log(sharedLogin);
   return (

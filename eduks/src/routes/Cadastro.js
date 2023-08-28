@@ -14,9 +14,10 @@ const Cadastro = () => {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
 
+    //Pega os valores coletados e manda para a api
     const handleClickCadastro = async (values) => {
         try {
-            const response = await axios.post('http://localhost:3000/auth/register', {
+            const response = await axios.post('https://eduks-backend-render.onrender.com/auth/register', {
                 name: values.name,
                 email: values.email,
                 password: values.password,
@@ -32,6 +33,7 @@ const Cadastro = () => {
         }
     };
 
+    //Faz as validacoes das informacoes coletadas
     const validationCadastro = yup.object().shape({
         name: yup.string().required('Este campo é obrigatório'),
         email: yup.string().email('Este não é um email válido').required('Este campo é obrigatório'),
@@ -39,6 +41,7 @@ const Cadastro = () => {
         confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'As senhas devem ser iguais').required('Este campo é obrigatório')
     });
 
+    //opcao de ver senha ou deixar oculta
     function checkboxDois() {
         let checkbox = document.getElementById('checkboxDois');
         let inputUm = document.getElementById('senha');

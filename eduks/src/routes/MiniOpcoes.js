@@ -20,6 +20,7 @@ const MiniOpcoes = () =>{
 
     const quantidadeReal = quantidadeGames-1;
 
+    //gera o caminho da proxima atividade
     function gerarProximaUrl(){
         if(sharedNumber == quantidadeReal){
             return "/fimAtividades";
@@ -48,6 +49,7 @@ const MiniOpcoes = () =>{
         }, 2000);
     }
 
+    //gera um numero aleatorio
     function aleatorio(max) {
         return Math.floor(Math.random() * max);
     }
@@ -61,6 +63,7 @@ const MiniOpcoes = () =>{
         }
     }
 
+    //faz o teste se o jogador clicou na opcao correta
     function tentativa(e){
         if(e.srcElement.id === "correto"){//teste se clicou no botao correto
 
@@ -85,6 +88,7 @@ const MiniOpcoes = () =>{
     let opcaoErrada = "CAXORRO";//puxa do banco;
     useEffect(() => {//isto faz pegar os elementos so depois de renderixados na tela
 
+        //coloca as opcoes de respostas nos botoes
         let espacoUm = document.getElementById("botaoUm");
         let espacoDois = document.getElementById("botaoDois");
 

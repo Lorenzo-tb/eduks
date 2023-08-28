@@ -14,10 +14,11 @@ const Dificuldade = () =>{
     let { sharedNumber, setSharedNumber } = useContext(SharedNumberContext);
     const { quantidadeGames, setQuantidadeGames } = useContext(QuantidadeMiniGamesContext);
 
+    //gera numero aleatorio
     function aleatorio(max) {
         return Math.floor(Math.random() * max);
     }
-
+    //gera a url da proxima atividade que o usuario ira jogar
     function gerarProximaUrl(){
         const proximoMiniGameUrl = aleatorio(3);
     

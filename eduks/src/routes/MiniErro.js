@@ -20,9 +20,12 @@ const MiniErro = () =>{
 
     const quantidadeReal = quantidadeGames-1;
 
+    //gera numero aleatorio
     function aleatorio(max) {
         return Math.floor(Math.random() * max);
     }
+
+    //gera o caminho da proxima atividade
     function gerarProximaUrl(){
         if(sharedNumber == quantidadeReal){
             return "/fimAtividades";
@@ -91,6 +94,7 @@ const MiniErro = () =>{
         
         let palavraArray = palavra.split("");
 
+        //gera um botao para cada letra da palavra puxada pelo banco
         for(let i=0; i<palavraArray.length; i++){
             let div = document.createElement("div");
             div.setAttribute("class", "col-1");

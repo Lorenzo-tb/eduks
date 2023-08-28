@@ -20,9 +20,11 @@ const MiniAcento = () =>{
 
     const quantidadeReal = quantidadeGames-1;
 
+    //gera numero aleatorio
     function aleatorio(max) {
         return Math.floor(Math.random() * max);
     }
+    //gera o caminho da proxima atividade jogada
     function gerarProximaUrl(){
         if(sharedNumber == quantidadeReal){
             return "/fimAtividades";
@@ -44,6 +46,7 @@ const MiniAcento = () =>{
         }
     }
     let url = gerarProximaUrl();
+
     function proximoMiniGame(){
         setSharedNumber(sharedNumber+1);
         setTimeout( () =>{
@@ -91,6 +94,7 @@ const MiniAcento = () =>{
         
         let palavraArray = palavra.split("");
 
+        //cria um botao para cada letra da palavra puxada pelo banco
         for(let i=0; i<palavraArray.length; i++){
             let div = document.createElement("div");
             div.setAttribute("class", "col-1");

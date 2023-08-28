@@ -20,9 +20,12 @@ const MiniPalavra = () =>{
 
     const quantidadeReal = quantidadeGames-1;
 
+    //gera numero aleatorio
     function aleatorio(max) {
         return Math.floor(Math.random() * max);
     }
+
+    //gera o caminho da proxima atividade
     function gerarProximaUrl(){
         if(sharedNumber == quantidadeReal){
             return "/fimAtividades";
@@ -56,6 +59,7 @@ const MiniPalavra = () =>{
     let palavraCerta = "estrela";//puxara do banco
     let imagem = "https://i0.wp.com/multarte.com.br/wp-content/uploads/2020/05/estrela-fundo-transparente2.png?resize=696%2C709&ssl=1";//banco
 
+    //mostra a palavra escrita da forma correta caso o usuario erre
     function formaCorreta(){//mostra a forma correta caso esteja escrito da forma errada
         let div = document.getElementById("formaCorreta");
 

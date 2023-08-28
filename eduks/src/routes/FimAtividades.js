@@ -18,6 +18,8 @@ const FimAtividades = () =>{
     
     let estrelas;
     let parabenizacao;
+
+    //Faz as validacoes de quantas estrelas o usuario deve ganhar equivalente aos seus acertos
         if(quantidadeAcertos == quantidadeGames){
             estrelas = tresEstrelas;
             parabenizacao = "PARABÉNS!"
@@ -35,6 +37,7 @@ const FimAtividades = () =>{
             parabenizacao = "Estude mais!"
         }
 
+        //Manda de volta para a aba de escolher o numero de atividades
         function handleClick(){
             setQuantidadeAcertos(0);
             setQuantidadeGames(0);
