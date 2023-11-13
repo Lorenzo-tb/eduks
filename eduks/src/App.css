@@ -2,9 +2,10 @@
   margin: 0;
   padding: 0;
   text-align: center;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   max-width: 100%;
-  width: 100vw;
+  width: 100%;
   max-width: 100vw;
   background-color: #DADADA;
   background-repeat:no-repeat;
@@ -105,7 +106,8 @@
 }
 
 .minha-imagem{
-  width: 10vw;
+  min-width: 15vw;
+  max-width: 100%;
 }
 
 .botoes-letras{

@@ -1,92 +1,113 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../components/Header";
 import Button from "../components/Button";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { SharedNumberContext } from '../App';
-import { QuantidadeMiniGamesContext } from '../App';
+import { DificuldadeGamesContext } from '../App';
+import { IdUserContext } from '../App';
+import umaEstrelaUnica from '../img/umaEstrelaUnica.png'
+import axios from 'axios';
 
 
-const Dificuldade = () =>{
+const Dificuldade = () => {
 
     const navigate = useNavigate();
     let { sharedNumber, setSharedNumber } = useContext(SharedNumberContext);
-    const { quantidadeGames, setQuantidadeGames } = useContext(QuantidadeMiniGamesContext);
+    const { dificuldadeGames, setDificuldadeGames } = useContext(DificuldadeGamesContext);
+
+    const { idUser, setIdUser } = useContext(IdUserContext);
+    const [name, setName] = useState("");
+    const [stars, setStars] = useState(0);
 
     //gera numero aleatorio
     function aleatorio(max) {
         return Math.floor(Math.random() * max);
     }
     //gera a url da proxima atividade que o usuario ira jogar
-    function gerarProximaUrl(){
+    function gerarProximaUrl() {
         const proximoMiniGameUrl = aleatorio(3);
-    
-        switch(proximoMiniGameUrl){
-            case 0 : 
+
+        switch (proximoMiniGameUrl) {
+            case 0:
                 return "/miniAcento";
                 break;
-                
-            case 1: 
+
+            case 1:
                 return "/miniOpcoes";
                 break;
-    
+
             case 2:
                 return "/miniPalavra";
                 break;
-    
+
         }
     }
-    
+
     let url;
-    function proximoMiniGame(){ 
+    function proximoMiniGame() {
         url = gerarProximaUrl();
         navigate(url);
     }
 
-    const cincoAtividades = () =>{
-        setQuantidadeGames(5);
+    const facil = () => {
+        setDificuldadeGames(25);
         setSharedNumber(0);
         proximoMiniGame();
-        
+
     }
 
-    const dezAtividades = () =>{
-        setQuantidadeGames(10);
+    const medio = () => {
+        setDificuldadeGames(17);
         setSharedNumber(0);
         proximoMiniGame();
     }
 
-    const quinzeAtividades = () =>{
-        setQuantidadeGames(15);
+    const dificil = () => {
+        setDificuldadeGames(10);
         setSharedNumber(0);
         proximoMiniGame();
     }
-    return(
+
+
+    useEffect(() => {
+
+        console.log(idUser);
+        axios.get(`https://eduks-back-end.vercel.app/user/${idUser}`)
+            .then((resp) => {
+                setName(resp.data.user.name);
+                setStars(resp.data.user.stars);
+            })
+    }, [])
+    return (
         <div className='App'>
             <div className='container'>
                 <div className='row'>
-                    <Header/>
+                    <Header />
                 </div>
 
-                <div className='row mt-5'>
-                    <h1 className='text-black'>Quantas atividades você deseja fazer?</h1>
+                <div className='row mt-2'>
+                    <h1 className='text-black'>Olá {name}</h1>
+                </div>
+                <div className='row mt-3'>
+                    <h1 className='text-black'>Dificuldade das atividades</h1>
                 </div>
                 <div className='row mt-3'>
                     <div className='col-md-2'></div>
                     <div className='col-md-2 mt-3'>
-                        <Button conteudo="5" onClick={cincoAtividades}/>
+                        <Button conteudo="Fácil" onClick={facil} />
                     </div>
                     <div className='col-md-1'></div>
                     <div className='col-md-2 mt-3'>
-                        <Button conteudo="10" onClick={dezAtividades}/>
+                        <Button conteudo="Médio" onClick={medio} />
                     </div>
                     <div className='col-md-1'></div>
                     <div className='col-md-2 mt-3'>
-                        <Button conteudo="15" onClick={quinzeAtividades}/>
+                        <Button conteudo="Difícil" onClick={dificil} />
                     </div>
                 </div>
-                <div className='row mt-1'>
+                <div className='row mt-4'>
                     <div className='col-3'></div>
                     <div className='col-6'>
                         <h1>Total de estrelas: </h1>
@@ -95,13 +116,15 @@ const Dificuldade = () =>{
                 <div className='row'>
                     <div className='col-5'></div>
                     <div className='col-2'>
-                        {/*
-                        
-                            aqui vai as estrelas totais que o usuario possui
-
-                        */}
+                        <div className='row'>
+                            <div className='col-6'>
+                                <img src={umaEstrelaUnica} alt="estrelas" style={{ width: "8vw" }} />
+                            </div>
+                            <div className='col-6 d-flex align-items-center'>
+                                <h1 className='text-center'>{stars}</h1>
+                            </div>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
         </div>

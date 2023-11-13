@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -6,25 +6,37 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import axios from 'axios';
-//import { SharedLoginContext } from '../App'
+import { IdUserContext, TokenContext } from '../App';
+
 
 const Login = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
+    const {idUser, setIdUser} = useContext(IdUserContext);
+    const {token, setToken} = useContext(TokenContext);
 
     //const { sharedLogin, setSharedLogin } = useContext(SharedLoginContext);
 
     //Pega as informacoes coletadas e manda para a api
     const handleClickLogin = async (values) => {
         try {
-            const response = await axios.post('https://eduks-backend-render.onrender.com/auth/login', {
+            const response = await axios.post('https://eduks-back-end.vercel.app/auth/login', {
                 email: values.email,
                 password: values.password
             });
 
             if (response.status === 200) {
-                //setSharedLogin(true);
-                navigate('/dificuldade');
+                console.log(idUser);
+                console.log(response.data.token);
+                console.log(response.data.idUser);
+                const usuarioId = response.data.idUser;
+                const novoToken = response.data.token;
+                setIdUser(usuarioId);
+                setToken(novoToken);
+
+                if (usuarioId === response.data.idUser) {
+                    navigate('/dificuldade');
+                }
             }
         } catch (error) {
             if (error.response && error.response.data) {

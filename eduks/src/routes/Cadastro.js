@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { IdUserContext, TokenContext } from '../App';
 import axios from 'axios';
 //import { SharedLoginContext } from '../App'
 
@@ -13,11 +14,13 @@ const Cadastro = () => {
     //const { sharedLogin, setSharedLogin } = useContext(SharedLoginContext);
     const navigate = useNavigate();
     const [error, setError] = useState(null);
+    const { idUser, setIdUser } = useContext(IdUserContext);
+    const {token, setToken} = useContext(TokenContext);
 
     //Pega os valores coletados e manda para a api
     const handleClickCadastro = async (values) => {
         try {
-            const response = await axios.post('https://eduks-backend-render.onrender.com/auth/register', {
+            const response = await axios.post('https://eduks-back-end.vercel.app/auth/register', {
                 name: values.name,
                 email: values.email,
                 password: values.password,
@@ -25,11 +28,26 @@ const Cadastro = () => {
             });
 
             console.log(response.data);
-            //setSharedLogin(true);
-            navigate('/dificuldade');
+
+            if (response.status === 201) {
+                console.log(idUser);
+                console.log(response.data.token);
+                console.log(response.data.idUser);
+                const usuarioId = response.data.idUser;
+                const novoToken = response.data.token;
+                setIdUser(usuarioId);
+                setToken(novoToken);
+
+                if (usuarioId === response.data.idUser) {
+                    navigate('/dificuldade');
+                }
+            }
         } catch (error) {
-            console.error('Erro ao cadastrar:', error);
-            setError('Erro ao cadastrar. Por favor, verifique os dados e tente novamente.');
+            if (error.response && error.response.data) {
+                console.log(error.response.data); // Isso deve conter detalhes sobre o erro
+            } else {
+                console.log('Erro desconhecido');
+            }
         }
     };
 
