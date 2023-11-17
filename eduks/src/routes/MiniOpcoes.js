@@ -139,7 +139,7 @@ const MiniOpcoes = () => {
                 setOpcaoErrada(resp.data[0].opcaoErrada);
             })
 
-        /*setOrdemOpcoes(aleatorio(2));
+        setOrdemOpcoes(aleatorio(2));
 
         iniciarTemporizador();
 
@@ -152,8 +152,8 @@ const MiniOpcoes = () => {
         return () => {
             clearInterval(intervalId);
             pararTemporizador();
-        };*/
-    }, [/*temporizadorAtivo*/]);
+        };
+    }, [temporizadorAtivo]);
 
     function renderizarBotoes() {
         if (ordemOpcoes === 0) {
